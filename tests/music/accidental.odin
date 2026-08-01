@@ -9,12 +9,12 @@ test__Accidental__sharpen :: proc(t: ^testing.T) {
     accidental: music.Accidental
     err: music.Accidental__Err__sharpen
 
-    accidental = 0
+    accidental = music.Accidental__NATURAL
     accidental, err = music.Accidental__sharpen(accidental)
     testing.expect(t, accidental == 1)
     testing.expect(t, err == .Ok)
 
-    accidental = 127
+    accidental = max(music.Accidental)
     accidental, err = music.Accidental__sharpen(accidental)
     testing.expect(t, err == .AlreadySharpestVariant)
 }
@@ -24,12 +24,12 @@ test__Accidental__flatten :: proc(t: ^testing.T) {
     accidental: music.Accidental
     err: music.Accidental__Err__flatten
 
-    accidental = 0
+    accidental = music.Accidental__NATURAL
     accidental, err = music.Accidental__flatten(accidental)
     testing.expect(t, accidental == -1)
     testing.expect(t, err == .Ok)
 
-    accidental = -128
+    accidental = min(music.Accidental)
     accidental, err = music.Accidental__flatten(accidental)
     testing.expect(t, err == .AlreadyFlattestVariant)
 }

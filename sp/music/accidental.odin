@@ -2,6 +2,14 @@ package sp_music
 
 Accidental :: i8
 
+Accidental__TRIPLE_FLAT :: -3
+Accidental__DOUBLE_FLAT :: -2
+Accidental__FLAT :: -1
+Accidental__NATURAL :: 0
+Accidental__SHARP :: 1
+Accidental__DOUBLE_SHARP :: 2
+Accidental__TRIPLE_SHARP :: 3
+
 Accidental__Err__sharpen :: enum {
     Ok,
     AlreadySharpestVariant,
@@ -11,7 +19,7 @@ Accidental__sharpen :: proc(accidental: Accidental) -> (sharpened: Accidental, e
     if accidental == max(Accidental) {
         err = .AlreadySharpestVariant
     } else {
-        sharpened = accidental + 1
+        sharpened = accidental + Accidental__SHARP
         err = .Ok
     }
 
@@ -27,7 +35,7 @@ Accidental__flatten :: proc(accidental: Accidental) -> (flattened: Accidental, e
     if accidental == min(Accidental) {
         err = .AlreadyFlattestVariant
     } else {
-        flattened = accidental - 1
+        flattened = accidental + Accidental__FLAT
         err = .Ok
     }
 
