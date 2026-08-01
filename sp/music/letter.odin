@@ -11,6 +11,9 @@ Letter :: enum {
 }
 
 Letter__next :: proc(letter: Letter, iterations: u8 = 1) -> (next: Letter) {
+    iterations := int(iterations)
+    iterations %= int(Letter.B) + 1
+
     if iterations == 0 {
         next = letter
     } else if iterations == 1 {
@@ -26,6 +29,9 @@ Letter__next :: proc(letter: Letter, iterations: u8 = 1) -> (next: Letter) {
 }
 
 Letter__prev :: proc(letter: Letter, iterations: u8 = 1) -> (prev: Letter) {
+    iterations := int(iterations)
+    iterations %= int(Letter.B) + 1
+
     if iterations == 0 {
         prev = letter
     } else if iterations == 1 {
