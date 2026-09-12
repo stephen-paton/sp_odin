@@ -804,3 +804,30 @@ test__Note__try_get__relative__B :: proc(t: ^testing.T) {
     testing.expect(t, relative.accidental == music.Accidental__SHARP)
     testing.expect(t, err == .Ok)
 }
+
+@(test)
+test__Note__new__flat :: proc(t: ^testing.T) {
+    note: music.Note
+
+    note = music.Note__new__flat(.F)
+    testing.expect(t, note.letter == .F)
+    testing.expect(t, note.accidental == music.Accidental__FLAT)
+}
+
+@(test)
+test__Note__new__natural :: proc(t: ^testing.T) {
+    note: music.Note
+
+    note = music.Note__new__natural(.F)
+    testing.expect(t, note.letter == .F)
+    testing.expect(t, note.accidental == music.Accidental__NATURAL)
+}
+
+@(test)
+test__Note__new__sharp :: proc(t: ^testing.T) {
+    note: music.Note
+
+    note = music.Note__new__sharp(.F)
+    testing.expect(t, note.letter == .F)
+    testing.expect(t, note.accidental == music.Accidental__SHARP)
+}
