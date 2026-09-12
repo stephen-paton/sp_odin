@@ -8,9 +8,9 @@
     ],
     ```
 ## How To Use
-`sp` functions similarly to Odin's built-in libraries.
+`sp` functions similarly to Odin's built-in collections.
 
-Once you've configures `ols` to recognise it, you simply need to import the collection by name and specify the desired package you want to use within it:
+Once you've configured [ols](https://github.com/DanielGavin/ols) to recognise it, you simply need to import the collection by name and specify the desired package you want to use within it:
 ```odin
 import "sp:music"
 
