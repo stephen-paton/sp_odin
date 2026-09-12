@@ -4,7 +4,7 @@
 2. Add `sp` to your `ols.json` config file as follows:
     ```json
     "collections": [
-        { "name": "sp", "path": "path/to/sp_odin" }
+        { "name": "sp", "path": "path/to/sp_odin/sp" }
     ],
     ```
 ## How To Use
@@ -15,11 +15,11 @@ Once you've configured [ols](https://github.com/DanielGavin/ols) to recognise it
 import "sp:music"
 
 main :: proc() {
-    my_note := music.Note__Eb()
+    my_note := music.Note__new__random_major_root()
 }
 ```
 
 Then pass the collection name to the build command as follows:
 ```bash
-odin run . -collection:sp=path/to/sp
+odin run . -collection:sp=path/to/sp_odin/sp
 ```
