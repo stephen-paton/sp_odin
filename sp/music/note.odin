@@ -42,7 +42,7 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
 
     #partial switch resultant_action {
         case .Sharpen:
-            err__try_get__sharpened: Accidental__Err__try_get__sharpened
+            err__try_get__sharpened: Accidental__try_get__sharpened__Err
             relative.accidental, err__try_get__sharpened = Accidental__try_get__sharpened(relative.accidental)
 
             if err__try_get__sharpened == .AlreadySharpestVariant {
@@ -50,7 +50,7 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
                 return
             }
         case .Flatten:
-            err__try_get__flattened: Accidental__Err__try_get__flattened
+            err__try_get__flattened: Accidental__try_get__flattened__Err
             relative.accidental, err__try_get__flattened = Accidental__try_get__flattened(relative.accidental)
 
             if err__try_get__flattened == .AlreadyFlattestVariant {
@@ -61,7 +61,7 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
 
     if scale_degree.accidental > 0 {
         for i in 1..=scale_degree.accidental {
-            err__try_get__sharpened: Accidental__Err__try_get__sharpened
+            err__try_get__sharpened: Accidental__try_get__sharpened__Err
             relative.accidental, err__try_get__sharpened = Accidental__try_get__sharpened(relative.accidental)
 
             if err__try_get__sharpened == .AlreadySharpestVariant {
@@ -71,7 +71,7 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
         }
     } else if scale_degree.accidental < 0 {
         for i in scale_degree.accidental..<0 {
-            err__try_get__flattened: Accidental__Err__try_get__flattened
+            err__try_get__flattened: Accidental__try_get__flattened__Err
             relative.accidental, err__try_get__flattened = Accidental__try_get__flattened(relative.accidental)
 
             if err__try_get__flattened == .AlreadyFlattestVariant {

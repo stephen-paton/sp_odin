@@ -7,7 +7,7 @@ import "sp:music"
 @(test)
 test__Accidental__try_get__sharpened :: proc(t: ^testing.T) {
     accidental: music.Accidental
-    err: music.Accidental__Err__try_get__sharpened
+    err: music.Accidental__try_get__sharpened__Err
 
     accidental = music.Accidental__NATURAL
     accidental, err = music.Accidental__try_get__sharpened(accidental)
@@ -22,7 +22,7 @@ test__Accidental__try_get__sharpened :: proc(t: ^testing.T) {
 @(test)
 test__Accidental__try_get__flattened :: proc(t: ^testing.T) {
     accidental: music.Accidental
-    err: music.Accidental__Err__try_get__flattened
+    err: music.Accidental__try_get__flattened__Err
 
     accidental = music.Accidental__NATURAL
     accidental, err = music.Accidental__try_get__flattened(accidental)

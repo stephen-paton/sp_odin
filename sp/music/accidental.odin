@@ -10,12 +10,12 @@ Accidental__SHARP :: 1
 Accidental__DOUBLE_SHARP :: 2
 Accidental__TRIPLE_SHARP :: 3
 
-Accidental__Err__try_get__sharpened :: enum {
+Accidental__try_get__sharpened__Err :: enum {
     Ok,
     AlreadySharpestVariant,
 }
 
-Accidental__try_get__sharpened :: proc(accidental: Accidental) -> (sharpened: Accidental, err: Accidental__Err__try_get__sharpened) {
+Accidental__try_get__sharpened :: proc(accidental: Accidental) -> (sharpened: Accidental, err: Accidental__try_get__sharpened__Err) {
     if accidental == max(Accidental) {
         err = .AlreadySharpestVariant
     } else {
@@ -26,12 +26,12 @@ Accidental__try_get__sharpened :: proc(accidental: Accidental) -> (sharpened: Ac
     return
 }
 
-Accidental__Err__try_get__flattened :: enum {
+Accidental__try_get__flattened__Err :: enum {
     Ok,
     AlreadyFlattestVariant,
 }
 
-Accidental__try_get__flattened :: proc(accidental: Accidental) -> (flattened: Accidental, err: Accidental__Err__try_get__flattened) {
+Accidental__try_get__flattened :: proc(accidental: Accidental) -> (flattened: Accidental, err: Accidental__try_get__flattened__Err) {
     if accidental == min(Accidental) {
         err = .AlreadyFlattestVariant
     } else {
