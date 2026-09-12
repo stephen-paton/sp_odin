@@ -1,5 +1,7 @@
 package sp_music
 
+import "core:math/rand"
+
 Note :: struct {
     letter: NoteLetter,
     accidental: Accidental
@@ -102,45 +104,70 @@ Note__new__sharp :: proc(letter: NoteLetter) -> (note: Note) {
     return
 }
 
+Note__major_roots := [MajorKey]Note {
+    .C = { letter = .C, accidental = Accidental__NATURAL },
+    .G = { letter = .G, accidental = Accidental__NATURAL },
+    .D = { letter = .D, accidental = Accidental__NATURAL },
+    .A = { letter = .A, accidental = Accidental__NATURAL },
+    .E = { letter = .E, accidental = Accidental__NATURAL },
+    .B = { letter = .B, accidental = Accidental__NATURAL },
+    .FSharp = { letter = .F, accidental = Accidental__SHARP },
+    .CSharp = { letter = .C, accidental = Accidental__SHARP },
+    .CFlat = { letter = .C, accidental = Accidental__FLAT },
+    .GFlat = { letter = .G, accidental = Accidental__FLAT },
+    .DFlat = { letter = .D, accidental = Accidental__FLAT },
+    .AFlat = { letter = .A, accidental = Accidental__FLAT },
+    .EFlat = { letter = .E, accidental = Accidental__FLAT },
+    .BFlat = { letter = .B, accidental = Accidental__FLAT },
+    .F = { letter = .F, accidental = Accidental__NATURAL },
+}
+
 Note__new__major_root :: proc(major: MajorKey) -> (note: Note) {
-    switch major {
-        case .C: note = { letter = .C, accidental = Accidental__NATURAL }
-        case .G: note = { letter = .G, accidental = Accidental__NATURAL }
-        case .D: note = { letter = .D, accidental = Accidental__NATURAL }
-        case .A: note = { letter = .A, accidental = Accidental__NATURAL }
-        case .E: note = { letter = .E, accidental = Accidental__NATURAL }
-        case .B: note = { letter = .B, accidental = Accidental__NATURAL }
-        case .FSharp: note = { letter = .F, accidental = Accidental__SHARP }
-        case .CSharp: note = { letter = .C, accidental = Accidental__SHARP }
-        case .CFlat: note = { letter = .C, accidental = Accidental__FLAT }
-        case .GFlat: note = { letter = .G, accidental = Accidental__FLAT }
-        case .DFlat: note = { letter = .D, accidental = Accidental__FLAT }
-        case .AFlat: note = { letter = .A, accidental = Accidental__FLAT }
-        case .EFlat: note = { letter = .E, accidental = Accidental__FLAT }
-        case .BFlat: note = { letter = .B, accidental = Accidental__FLAT }
-        case .F: note = { letter = .F, accidental = Accidental__NATURAL }
-    }
+    note = Note__major_roots[major]
 
     return
 }
 
+Note__minor_roots := [MinorKey]Note {
+    .A = { letter = .A, accidental = Accidental__NATURAL },
+    .E = { letter = .E, accidental = Accidental__NATURAL },
+    .B = { letter = .B, accidental = Accidental__NATURAL },
+    .FSharp = { letter = .F, accidental = Accidental__SHARP },
+    .CSharp = { letter = .C, accidental = Accidental__SHARP },
+    .GSharp = { letter = .G, accidental = Accidental__SHARP },
+    .DSharp = { letter = .D, accidental = Accidental__SHARP },
+    .ASharp = { letter = .A, accidental = Accidental__SHARP },
+    .AFlat = { letter = .A, accidental = Accidental__FLAT },
+    .EFlat = { letter = .E, accidental = Accidental__FLAT },
+    .BFlat = { letter = .B, accidental = Accidental__FLAT },
+    .F = { letter = .F, accidental = Accidental__NATURAL },
+    .C = { letter = .C, accidental = Accidental__NATURAL },
+    .G = { letter = .G, accidental = Accidental__NATURAL },
+    .D = { letter = .D, accidental = Accidental__NATURAL },
+}
+
 Note__new__minor_root :: proc(minor: MinorKey) -> (note: Note) {
-    switch minor {
-        case .A: note = { letter = .A, accidental = Accidental__NATURAL }
-        case .E: note = { letter = .E, accidental = Accidental__NATURAL }
-        case .B: note = { letter = .B, accidental = Accidental__NATURAL }
-        case .FSharp: note = { letter = .F, accidental = Accidental__SHARP }
-        case .CSharp: note = { letter = .C, accidental = Accidental__SHARP }
-        case .GSharp: note = { letter = .G, accidental = Accidental__SHARP }
-        case .DSharp: note = { letter = .D, accidental = Accidental__SHARP }
-        case .ASharp: note = { letter = .A, accidental = Accidental__SHARP }
-        case .AFlat: note = { letter = .A, accidental = Accidental__FLAT }
-        case .EFlat: note = { letter = .E, accidental = Accidental__FLAT }
-        case .BFlat: note = { letter = .B, accidental = Accidental__FLAT }
-        case .F: note = { letter = .F, accidental = Accidental__NATURAL }
-        case .C: note = { letter = .C, accidental = Accidental__NATURAL }
-        case .G: note = { letter = .G, accidental = Accidental__NATURAL }
-        case .D: note = { letter = .D, accidental = Accidental__NATURAL }
+    note = Note__minor_roots[minor]
+    
+    return
+}
+
+Note__new__random_major_root :: proc() -> (note: Note) {
+    note = Note__new__major_root(rand.choice_enum(MajorKey))
+
+    return
+}
+
+Note__new__random_minor_root :: proc() -> (note: Note) {
+    note = Note__new__minor_root(rand.choice_enum(MinorKey))
+
+    return
+}
+
+Note__new__random_root :: proc() -> (note: Note) {
+    switch rand.choice_enum(KeyType) {
+        case .Major: note = Note__new__random_major_root()
+        case .Minor: note = Note__new__random_minor_root()
     }
 
     return
