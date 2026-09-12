@@ -5,31 +5,31 @@ import "core:testing"
 import "sp:music"
 
 @(test)
-test__Accidental__sharpen :: proc(t: ^testing.T) {
+test__Accidental__try_get__sharpened :: proc(t: ^testing.T) {
     accidental: music.Accidental
-    err: music.Accidental__Err__sharpen
+    err: music.Accidental__Err__try_get__sharpened
 
     accidental = music.Accidental__NATURAL
-    accidental, err = music.Accidental__sharpen(accidental)
+    accidental, err = music.Accidental__try_get__sharpened(accidental)
     testing.expect(t, accidental == 1)
     testing.expect(t, err == .Ok)
 
     accidental = max(music.Accidental)
-    accidental, err = music.Accidental__sharpen(accidental)
+    accidental, err = music.Accidental__try_get__sharpened(accidental)
     testing.expect(t, err == .AlreadySharpestVariant)
 }
 
 @(test)
-test__Accidental__flatten :: proc(t: ^testing.T) {
+test__Accidental__try_get__flattened :: proc(t: ^testing.T) {
     accidental: music.Accidental
-    err: music.Accidental__Err__flatten
+    err: music.Accidental__Err__try_get__flattened
 
     accidental = music.Accidental__NATURAL
-    accidental, err = music.Accidental__flatten(accidental)
+    accidental, err = music.Accidental__try_get__flattened(accidental)
     testing.expect(t, accidental == -1)
     testing.expect(t, err == .Ok)
 
     accidental = min(music.Accidental)
-    accidental, err = music.Accidental__flatten(accidental)
+    accidental, err = music.Accidental__try_get__flattened(accidental)
     testing.expect(t, err == .AlreadyFlattestVariant)
 }

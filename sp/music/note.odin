@@ -42,18 +42,18 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
 
     #partial switch resultant_action {
         case .Sharpen:
-            sharpen_err: Accidental__Err__sharpen
-            relative.accidental, sharpen_err = Accidental__sharpen(relative.accidental)
+            err__try_get__sharpened: Accidental__Err__try_get__sharpened
+            relative.accidental, err__try_get__sharpened = Accidental__try_get__sharpened(relative.accidental)
 
-            if sharpen_err == .AlreadySharpestVariant {
+            if err__try_get__sharpened == .AlreadySharpestVariant {
                 err = .AccidentalCannotBeSharpened
                 return
             }
         case .Flatten:
-            flatten_err: Accidental__Err__flatten
-            relative.accidental, flatten_err = Accidental__flatten(relative.accidental)
+            err__try_get__flattened: Accidental__Err__try_get__flattened
+            relative.accidental, err__try_get__flattened = Accidental__try_get__flattened(relative.accidental)
 
-            if flatten_err == .AlreadyFlattestVariant {
+            if err__try_get__flattened == .AlreadyFlattestVariant {
                 err = .AccidentalCannotBeFlattened
                 return
             }
@@ -61,20 +61,20 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
 
     if scale_degree.accidental > 0 {
         for i in 1..=scale_degree.accidental {
-            sharpen_err: Accidental__Err__sharpen
-            relative.accidental, sharpen_err = Accidental__sharpen(relative.accidental)
+            err__try_get__sharpened: Accidental__Err__try_get__sharpened
+            relative.accidental, err__try_get__sharpened = Accidental__try_get__sharpened(relative.accidental)
 
-            if sharpen_err == .AlreadySharpestVariant {
+            if err__try_get__sharpened == .AlreadySharpestVariant {
                 err = .AccidentalCannotBeSharpened
                 return
             }
         }
     } else if scale_degree.accidental < 0 {
         for i in scale_degree.accidental..<0 {
-            flatten_err: Accidental__Err__flatten
-            relative.accidental, flatten_err = Accidental__flatten(relative.accidental)
+            err__try_get__flattened: Accidental__Err__try_get__flattened
+            relative.accidental, err__try_get__flattened = Accidental__try_get__flattened(relative.accidental)
 
-            if flatten_err == .AlreadyFlattestVariant {
+            if err__try_get__flattened == .AlreadyFlattestVariant {
                 err = .AccidentalCannotBeFlattened
                 return
             }
