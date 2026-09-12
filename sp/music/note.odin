@@ -23,21 +23,21 @@ Note__relative :: proc(note: Note, scale_degree: ScaleDegree) -> (relative: Note
 
     if scale_degree.number > ScaleDegreeNumber__MAX do scale_degree.number %= ScaleDegreeNumber__MAX
 
-    resultant_action: NoteLetter__ResultantAction
+    resultant_action: NoteLetter__get__adjacent__ResultantAction
 
     switch scale_degree.number {
         case 2:
-            relative.letter, resultant_action = NoteLetter__next(relative.letter, 2)
+            relative.letter, resultant_action = NoteLetter__get__next(relative.letter, 2)
         case 3:
-            relative.letter, resultant_action = NoteLetter__next(relative.letter, 4)
+            relative.letter, resultant_action = NoteLetter__get__next(relative.letter, 4)
         case 4:
-            relative.letter, resultant_action = NoteLetter__prev(relative.letter)
+            relative.letter, resultant_action = NoteLetter__get__prev(relative.letter)
         case 5:
-            relative.letter, resultant_action = NoteLetter__next(relative.letter)
+            relative.letter, resultant_action = NoteLetter__get__next(relative.letter)
         case 6:
-            relative.letter, resultant_action = NoteLetter__next(relative.letter, 3)
+            relative.letter, resultant_action = NoteLetter__get__next(relative.letter, 3)
         case 7:
-            relative.letter, resultant_action = NoteLetter__next(relative.letter, 5)
+            relative.letter, resultant_action = NoteLetter__get__next(relative.letter, 5)
     }
 
     #partial switch resultant_action {

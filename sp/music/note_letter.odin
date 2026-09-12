@@ -10,13 +10,13 @@ NoteLetter :: enum {
     B,
 }
 
-NoteLetter__ResultantAction :: enum {
+NoteLetter__get__adjacent__ResultantAction :: enum {
     None,
     Sharpen,
     Flatten,
 }
 
-NoteLetter__next :: proc(letter: NoteLetter, iterations: u8 = 1) -> (next: NoteLetter, resultant_action: NoteLetter__ResultantAction) {
+NoteLetter__get__next :: proc(letter: NoteLetter, iterations: u8 = 1) -> (next: NoteLetter, resultant_action: NoteLetter__get__adjacent__ResultantAction) {
     capped_iterations := int(iterations)
     capped_iterations %= int(NoteLetter.B) + 1
 
@@ -36,10 +36,10 @@ NoteLetter__next :: proc(letter: NoteLetter, iterations: u8 = 1) -> (next: NoteL
         next = NoteLetter(int_next)
     } else {
         next = letter
-        temp_resultant_action: NoteLetter__ResultantAction = .None
+        temp_resultant_action: NoteLetter__get__adjacent__ResultantAction = .None
 
         for i in 1..=capped_iterations {
-            next, temp_resultant_action = NoteLetter__next(next)
+            next, temp_resultant_action = NoteLetter__get__next(next)
             if temp_resultant_action == .Sharpen do resultant_action = .Sharpen
         }
     }
@@ -47,7 +47,7 @@ NoteLetter__next :: proc(letter: NoteLetter, iterations: u8 = 1) -> (next: NoteL
     return
 }
 
-NoteLetter__prev :: proc(letter: NoteLetter, iterations: u8 = 1) -> (prev: NoteLetter, resultant_action: NoteLetter__ResultantAction) {
+NoteLetter__get__prev :: proc(letter: NoteLetter, iterations: u8 = 1) -> (prev: NoteLetter, resultant_action: NoteLetter__get__adjacent__ResultantAction) {
     capped_iterations := int(iterations)
     capped_iterations %= int(NoteLetter.B) + 1
 
@@ -68,10 +68,10 @@ NoteLetter__prev :: proc(letter: NoteLetter, iterations: u8 = 1) -> (prev: NoteL
     } else {
         prev = letter
 
-        temp_resultant_action: NoteLetter__ResultantAction = .None
+        temp_resultant_action: NoteLetter__get__adjacent__ResultantAction = .None
 
         for i in 1..=capped_iterations {
-            prev, temp_resultant_action = NoteLetter__prev(prev)
+            prev, temp_resultant_action = NoteLetter__get__prev(prev)
             if temp_resultant_action == .Flatten do resultant_action = .Flatten
         }
     }
