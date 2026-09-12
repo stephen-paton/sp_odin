@@ -1,6 +1,6 @@
 /*
 To test:
-    odin test tests/ -all-packages -collection:sp={path\to\sp}
+    odin test tests/ -all-packages -collection:sp=path/to/sp
 */
 package sp_tests
 
