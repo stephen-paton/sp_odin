@@ -101,3 +101,47 @@ Note__new__sharp :: proc(letter: NoteLetter) -> (note: Note) {
     
     return
 }
+
+Note__new__major_root :: proc(major: MajorKey) -> (note: Note) {
+    switch major {
+        case .C: note = { letter = .C, accidental = Accidental__NATURAL }
+        case .G: note = { letter = .G, accidental = Accidental__NATURAL }
+        case .D: note = { letter = .D, accidental = Accidental__NATURAL }
+        case .A: note = { letter = .A, accidental = Accidental__NATURAL }
+        case .E: note = { letter = .E, accidental = Accidental__NATURAL }
+        case .B: note = { letter = .B, accidental = Accidental__NATURAL }
+        case .FSharp: note = { letter = .F, accidental = Accidental__SHARP }
+        case .CSharp: note = { letter = .C, accidental = Accidental__SHARP }
+        case .CFlat: note = { letter = .C, accidental = Accidental__FLAT }
+        case .GFlat: note = { letter = .G, accidental = Accidental__FLAT }
+        case .DFlat: note = { letter = .D, accidental = Accidental__FLAT }
+        case .AFlat: note = { letter = .A, accidental = Accidental__FLAT }
+        case .EFlat: note = { letter = .E, accidental = Accidental__FLAT }
+        case .BFlat: note = { letter = .B, accidental = Accidental__FLAT }
+        case .F: note = { letter = .F, accidental = Accidental__NATURAL }
+    }
+
+    return
+}
+
+Note__new__minor_root :: proc(minor: MinorKey) -> (note: Note) {
+    switch minor {
+        case .A: note = { letter = .A, accidental = Accidental__NATURAL }
+        case .E: note = { letter = .E, accidental = Accidental__NATURAL }
+        case .B: note = { letter = .B, accidental = Accidental__NATURAL }
+        case .FSharp: note = { letter = .F, accidental = Accidental__SHARP }
+        case .CSharp: note = { letter = .C, accidental = Accidental__SHARP }
+        case .GSharp: note = { letter = .G, accidental = Accidental__SHARP }
+        case .DSharp: note = { letter = .D, accidental = Accidental__SHARP }
+        case .ASharp: note = { letter = .A, accidental = Accidental__SHARP }
+        case .AFlat: note = { letter = .A, accidental = Accidental__FLAT }
+        case .EFlat: note = { letter = .E, accidental = Accidental__FLAT }
+        case .BFlat: note = { letter = .B, accidental = Accidental__FLAT }
+        case .F: note = { letter = .F, accidental = Accidental__NATURAL }
+        case .C: note = { letter = .C, accidental = Accidental__NATURAL }
+        case .G: note = { letter = .G, accidental = Accidental__NATURAL }
+        case .D: note = { letter = .D, accidental = Accidental__NATURAL }
+    }
+
+    return
+}
